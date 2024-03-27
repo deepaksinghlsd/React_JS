@@ -56,6 +56,7 @@ const App = () => {
         <h1>This is {name} this side </h1>
       </div>
       <User />
+      {/* This is comment in jsx{JavaScriptXML}*/}
     </React.Fragment>
   );
 };
