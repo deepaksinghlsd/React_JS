@@ -1,0 +1,16 @@
+.Todoheding{
+    font-size: xl;
+    font-weight: 700;
+    margin: 20px;
+}
+.box {
+    width: 50%;
+}
+.bg-row{
+ text-align: left;
+   
+}
+.bg-battan{
+    min-width: 90px;
+    margin: 3px;
+}
