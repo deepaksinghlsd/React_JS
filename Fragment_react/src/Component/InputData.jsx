@@ -1,12 +1,10 @@
 import React from 'react'
 
-const InputData = () => {
-    const DisplayItem = (event) => {
-        console.log(event.target.value);
-    }
+const InputData = (props) => {
+   
   return (
     <div>
-        <input type="text" placeholder='Enter the food' onChange={DisplayItem} />
+        <input type="text" value={props.TextShow} placeholder='Enter the food' onKeyDown={props.DisplayItem} />
     </div>
   )
 }
