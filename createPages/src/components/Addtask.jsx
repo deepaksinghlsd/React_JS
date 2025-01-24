@@ -1,10 +1,25 @@
 import {useState} from "react";
 import {useSelector ,useDispatch} from "react-redux";
-import {addTodo , toggleTodo ,deleteTodo} from "../redux/todoSlice"
+import {addTodo , editTodo ,deleteTodo} from "../redux/todoSlice"
 const AddTask =()=>{
     const [text , setText]= useState("");
+    const [edit , setEdit]=useState(null);
     const todos = useSelector((state)=> state.todos);
     const dispatch = useDispatch();
+
+    const handleEdit = (todo)=>{
+          setEdit(todo.id),
+          setText(todo.text)
+    }
+
+    const handeSave = () =>{
+      if(text.trim()&&edit !== null){
+        dispatch(editTodo({id:edit , text})),
+        setEdit(null),
+        setText("");
+      }
+    }
+
     const handleAdd = ()=>{
         if(text.trim() !==""){
             dispatch(addTodo({id:Date.now(), text , completed: false}));
@@ -23,28 +38,35 @@ const AddTask =()=>{
       placeholder="Enter your task"
       className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300 w-64"
     />
-    <button
-      onClick={handleAdd}
-      className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition"
-    >
-      Add
-    </button>
+    
+    { edit ?(
+      <button onClick={handeSave}>Save</button>
+    )
+   :( <button
+    onClick={handleAdd}
+    className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition"
+  >
+    Add
+  </button>)
+
+    }
   </div>
 
   <ul className="w-3/4 max-w-xl">
-    {todos.map((todo) => (
+    {todos.map((todo , index) => (
       <li
         key={todo.id}
         className="flex justify-between items-center bg-white shadow rounded-lg px-4 py-2 mb-4"
       >
-        <span
-          onClick={() => dispatch(toggleTodo(todo.id))}
-          className={`cursor-pointer ${
-            todo.completed ? "line-through text-gray-400" : "text-gray-800"
-          }`}
-        >
-          {todo.text}
+        <span>
+          {index+1}.{todo.text}
         </span>
+        <button
+          onClick={() =>handleEdit(todo)}
+          className="text-green-500 hover:text-green-700 transition"
+        >
+          Edit
+        </button>
         <button
           onClick={() => dispatch(deleteTodo(todo.id))}
           className="text-red-500 hover:text-red-700 transition"

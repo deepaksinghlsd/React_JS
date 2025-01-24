@@ -19,20 +19,18 @@ const todoSlice = createSlice({
             saveTodoLocalStroage(newState);
             return newState;
         },
-        toggleTodo: (state, action) => {
-         const newState = state.map((todo) =>
-        todo.id === action.payload ? { ...todo, completed: !todo.completed } : todo
-      );
-      saveToLocalStorage(newState);
-      return newState;
-    },
         deleteTodo : (state,action)=>{
             const newState = state.filter(todo=>todo.id !== action.payload);
+            saveTodoLocalStroage(newState);
+            return newState;
+        },
+        editTodo : (state,action)=>{
+            const newState = state.map((todo)=> todo.id ===action.payload.id ? action.payload : todo )
             saveTodoLocalStroage(newState);
             return newState;
         },
     },
 });
 
-export const {addTodo, toggleTodo, deleteTodo} = todoSlice.actions;
+export const {addTodo, editTodo, deleteTodo} = todoSlice.actions;
 export default todoSlice.reducer;

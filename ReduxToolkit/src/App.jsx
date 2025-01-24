@@ -4,7 +4,7 @@ import AddTask from './components/AddTask'
 const App = () => {
   return (
     <>
-    <h1 className='bg-slate-100'>My ToDo App These </h1>
+    <h1 className='bg-slate-700'>My ToDo App These </h1>
     <AddTask/>
     </>
   )
