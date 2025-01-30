@@ -1,12 +1,17 @@
-import Navbar from "./components/Navbar";
+import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
-const App = ()=>{
+import Contactpage from "./components/ContactPage";
+import Layout from "./components/Layout";
+const App = () => {
   return (
-    <> 
-    <Navbar/>
-    jkdfskjfs
-    <Home/>
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path="/Home" element={<Home />} />
+          <Route path="/contact" element={<Contactpage />} />
+        </Route>
+      </Routes>
     </>
-  )
-}
-export default App
+  );
+};
+export default App;

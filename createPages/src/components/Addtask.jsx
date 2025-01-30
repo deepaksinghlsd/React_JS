@@ -28,29 +28,32 @@ const AddTask =()=>{
          }
     return(
         <div className="min-h-screen bg-gray-100 flex flex-col items-center py-8">
-  <h1 className="text-3xl font-bold text-gray-800 mb-6">To-Do App</h1>
+  <div className="w-3/4 max-w-xl bg-white shadow rounded-lg mb-3" >
+  <h1 className="text-3xl font-bold text-gray-800 mb-6 mt-3 ml-[30%] ">To-Do App</h1>
 
-  <div className="flex gap-2 mb-6">
-    <input
-      type="text"
-      value={text}
-      onChange={(e) => setText(e.target.value)}
-      placeholder="Enter your task"
-      className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300 w-64"
-    />
-    
-    { edit ?(
-      <button onClick={handeSave}>Save</button>
-    )
-   :( <button
-    onClick={handleAdd}
-    className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition"
-  >
-    Add
-  </button>)
+<div className="flex gap-2 mb-6 ml-[20%]">
+  <input
+    type="text"
+    value={text}
+    onChange={(e) => setText(e.target.value)}
+    placeholder="Enter your task"
+    className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring focus:ring-blue-300 w-64"
+  />
+  
+  { edit ?(
+    <button className="bg-green-400 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 transition"  onClick={handeSave}>Save</button>
+  )
+ :( <button
+  onClick={handleAdd}
+  className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition"
+>
+  Add
+</button>)
 
-    }
+  }
+</div>
   </div>
+  
 
   <ul className="w-3/4 max-w-xl">
     {todos.map((todo , index) => (
@@ -61,9 +64,10 @@ const AddTask =()=>{
         <span>
           {index+1}.{todo.text}
         </span>
-        <button
+       <div>
+       <button
           onClick={() =>handleEdit(todo)}
-          className="text-green-500 hover:text-green-700 transition"
+          className="text-green-500 hover:text-green-700 m-5 transition"
         >
           Edit
         </button>
@@ -73,6 +77,7 @@ const AddTask =()=>{
         >
           Delete
         </button>
+       </div>
       </li>
     ))}
   </ul>
